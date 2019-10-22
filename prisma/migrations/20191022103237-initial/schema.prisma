@@ -1,0 +1,92 @@
+generator photon {
+  provider = "photonjs"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://admin:admin@localhost:5432/postgres?schema=epnpc"
+}
+
+model Ego {
+  id    String  @default(cuid()) @id
+  name  String  @unique
+
+  cog Int
+  int Int
+  ref Int
+  sav Int
+  som Int
+  wil Int
+  skills Skill[]
+}
+
+model Ware {
+ id String @default(cuid()) @id
+
+ name String @unique
+ morphs Morph[]
+}
+
+enum Aptitude {
+ COG
+ INT
+ REF
+ SAV
+ SOM
+ WIL
+}
+
+model Skill {
+  id String @default(cuid()) @id
+
+  name String @unique
+  linkedAptitude Aptitude
+}
+
+enum MorphType {
+  Biomorph
+  Synthmorph
+  Infomorph
+}
+
+model MorphTrait {
+  id String @default(cuid()) @id
+  name String @unique
+  morphs Morph[]
+}
+
+model Morph {
+  id String @default(cuid()) @id
+  name String @unique
+
+  cost Int
+  avail Int
+  wt Int
+  dur Int
+  dr Int
+  insight Int
+  moxie Int
+  vigor Int
+  flex Int
+  movementRate String?
+  ware Ware[]
+  type MorphType
+  notes String?
+  traits MorphTrait[]
+}
+
+model NonPlayerCharacter {
+  id String @default(cuid()) @id
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  threatPool Int
+  cog Int
+  int Int
+  ref Int
+  sav Int
+  som Int
+  wil Int
+  skills Skill[]
+  morph Morph
+}

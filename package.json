@@ -1,0 +1,46 @@
+{
+  "name": "epnpc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/vanbujm/epnpc.git",
+  "author": "Jonathan Van Buren <vanbujm@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/node": "^7.6.3",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-typescript": "^7.6.0",
+    "@babel/register": "^7.6.2",
+    "@types/graphql-iso-date": "^3.3.3",
+    "@types/node": "^12.11.1",
+    "@typescript-eslint/eslint-plugin": "^2.4.0",
+    "@typescript-eslint/parser": "^2.4.0",
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "nodemon": "^1.19.4",
+    "prettier": "^1.18.2",
+    "ts-node": "^8.4.1",
+    "ts-node-dev": "^1.0.0-pre.43",
+    "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "@prisma/sdk": "^0.0.20",
+    "apollo-server": "^2.9.6",
+    "graphql": "^14.5.8",
+    "graphql-iso-date": "^3.6.1",
+    "lodash": "^4.17.15",
+    "nexus": "0.12.0-beta.12",
+    "nexus-prisma": "^0.5.0-next.5",
+    "prisma2": "2.0.0-preview013.3"
+  },
+  "scripts": {
+    "postinstall": "prisma2 generate",
+    "start:dev": "nodemon --exec babel-node src/index.ts --extensions \".ts\"",
+    "start": "babel-node src/index.ts --extensions \".ts\"",
+    "seed": "babel-node prisma/seed.ts --extensions \".ts\""
+  }
+}
